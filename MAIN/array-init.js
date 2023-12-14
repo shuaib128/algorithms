@@ -10,13 +10,58 @@ Ways to create and populate a loop with its indices
 */
 
 const controller = {
-    rounds: [100, 1000, 10000, 100000, 1000000],
-    init_for: function() {},
-    init_while: function() {},
-    init_forEach: function() {},
-    isize_for: function() {},
-    isize_while: function() {},
-    init_init: function() {},
-    test() {}
+    init_for: function(n) {
+        const arr = []
+        for(let i = 0; i < n; ++i)
+            arr.push(i)
+        return arr
+    },
+    init_while: function(n) {
+        const arr = []
+        let i = 0
+        while (i < n) {
+            arr.push(i)
+            ++i
+        }
+        return arr
+    },
+    init_forEach: function(n) {
+        const arr = new Array(n)
+        arr.forEach((e, i) => arr[i] = i)
+        return arr
+    },
+    isize_for: function(n) {
+        const arr = new Array(n)
+        for (let i = 0; i < arr.length; ++i)
+            arr[i] = i
+        return arr
+    },
+    isize_while: function(n) {
+        const arr = new Array(n)
+        let i = 0
+        while (i < arr.length) {
+            arr[i] = i
+            ++i
+        }
+        return arr
+    },
+    init_init: function(n) {
+        const arr = new Array(n)
+        const arr2 = (new Array(n)).fill(...arr.keys())
+        return arr2
+    }
 }
 
+const test = () => {
+    const rounds = [100, 1000, 10000, 100000, 1000000]
+
+    const keys = Object.keys(controller)
+    for (const key of keys)
+        for (const round of rounds) {
+            console.time(`${key} on ${round}`)
+            controller[key](round)
+            console.timeEnd(`${key} on ${round}`)
+        }
+}
+
+test()
