@@ -8,7 +8,27 @@ Algorithms
 
 ## Included Algorithms
 
+**How to add a solution**
+1.  Add solution as independent function named <name|abbr>_<num>, e.g. 
+    ``` const sm_1 = input => {} ```
+2.  Add name of solution to solutions object (found past divider in file), e.g. 
+    ``` const solutions = { '<name>': {<func_name>}, ... } ```
+    If you don't see your name in solutions, use your unabbreviated name for the key
+3.  If you don't see your name in results(), add the following lines:
+    ```js
+    lines = lines.concat(write('<name> - Tests', solutions[<name>], true))
+    lines = lines.concat(write('<name> - Rates of Growth', solutions[<name>], false))
+    ```
+4.  Navigate into the local directory (if you haven't already): ``` cd STUDY/<topic> ```
+    Generate results using terminal: ```node <filename>.js```
+
 ### MAIN
+
+**Array Init**: Test rate of growth for initializing an array filled with the values of its indices
+
+**Creating Instances**: Test rate of growth between declaring prototypes, classes, and factories
+
+**String Int Convert**: How to convert char to int and int to char
 
 ### STUDY
 
