@@ -34,11 +34,19 @@ const solutions = {
     sm_1, sm_2, sm_3, sm_4
 }
 
+const worst_case = () => {
+    const n = Math.floor(Math.random() * 10 ** 4) + 10 ** 6
+    const arr = new Array(n)
+    arr.forEach((e, i, a) => a[i] = i)
+    return arr
+}
+
 const tests = [
-    { arr: [1,1,1], res: true },
     { arr: [1,2,3,1], res: true },
     { arr: [1,2,3,4], res: false },
-    { arr: [1,1,1,3,3,4,3,2,4,2], res: true }
+    { arr: [1,1,1,3,3,4,3,2,4,2], res: true },
+    { arr: worst_case().concat([1]), res: true },
+    { arr: worst_case(), res: false }
 ]
 
 const test = () => {
