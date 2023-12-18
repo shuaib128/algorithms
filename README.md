@@ -8,6 +8,13 @@ Algorithms
 
 ## Included Algorithms
 
+**Video Chat with Screensharing**
+[] used : [] usable
+- [x][x]    Discord
+- [-][x]    Zoom
+- [][]      [Whereby](https://whereby.com)
+- [][]      [Talky](https://talky.io)
+
 **How to add a solution**
 1.  Add solution as independent function named <name|abbr>_<num>, e.g. 
     ``` const sm_1 = input => {} ```
@@ -35,6 +42,7 @@ Algorithms
 Sources:
 - [NeetCode 150](https://neetcode.io/practice)
 - [Cracking the Coding Interview](./cracking-the-coding-interview-6ed.pdf)
+- [Learn How to Program](https://old.learnhowtoprogram.com/computer-science)
 
 Additional sources:
 - [Grokking Algorithms](./grokking-algorithms-1ed.pdf)
@@ -51,7 +59,9 @@ Additional sources:
 
 **Arrays and Hashing**
 - contains duplicate
+- group anagrams
 - is anagram
+- two sum
 
 **Backtracking**
 - (none yet)
