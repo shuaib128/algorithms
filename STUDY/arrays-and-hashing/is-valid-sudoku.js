@@ -156,8 +156,62 @@ const sm_4 = board => {
     return true
 }
 
+const sm_5 = board => {
+    const tab = { x: new Array(9), y: new Array(9), b: new Array(9) }
+    for (const y of board.keys())
+        for (const x of board.keys())
+            if (board[y][x] !== '.') {
+                const v = board[y][x]
+
+                if (tab.x[x] && tab.x[x].has(v))
+                    return false
+                else if (!tab.x[x])
+                    tab.x[x] = new Set()
+                tab.x[x].add(v)
+
+                if (tab.y[y] && tab.y[y].has(v))
+                    return false
+                else if (!tab.y[y])
+                    tab.y[y] = new Set()
+                tab.y[y].add(v)
+
+                const b = Math.floor(y / 3) * 3 + Math.floor(x / 3)
+                if (tab.b[b] && tab.b[b].has(v))
+                    return false
+                else if (!tab.b[b])
+                    tab.b[b] = new Set()
+                tab.b[b].add(v)
+            }
+    return true
+}
+
+const sm_6 = board => {
+    const arr = new Array(board.length)
+    for (let y = 0; y < board.length; ++y)
+        for (let x = 0; x < board.length; ++x)
+            if (board[y][x] !== '.') {
+                const b = Math.floor(y / 3) * 3 + Math.floor(x / 3)
+
+                let v = board[y][x]
+                if (!arr[v - 1]) {
+                    arr[v - 1] = { x: new Set([x]), y: new Set([y]), b: new Set([b]) }
+                    continue;
+                }
+
+                v = arr[v - 1]
+                
+                if (v.x.has(x) || v.y.has(y) || v.b.has(b))
+                    return false
+
+                v.x.add(x)
+                v.y.add(y)
+                v.b.add(b)
+            }
+    return true
+}
+
 const solutions = {
-    'Stella Marie': { sm_1, sm_2, sm_3 }
+    'Stella Marie': { sm_1, sm_2, sm_3, sm_4, sm_5, sm_6 }
 }
 
 const tests = [
