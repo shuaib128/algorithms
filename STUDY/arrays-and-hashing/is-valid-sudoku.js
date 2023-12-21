@@ -95,8 +95,42 @@ const sm_2 = board => {
     return true
 }
 
+const sm_3 = board => {
+    const arrSet = () => {
+        const arr = new Array(board.length)
+        for (const i of arr.keys())
+            arr[i] = new Set()
+        return arr
+    }
+
+    const map = {
+        row: arrSet(),
+        col: arrSet(),
+        box: arrSet()
+    }
+
+    for (const y of board.keys())
+        for (const x of board[y].keys()) {
+            const v = board[y][x]
+            if (v === '.')
+                continue;
+
+            const box = Math.floor(y / 3) * 3 + Math.floor(x / 3)
+            
+            if (map.row[x].has(v) || map.col[y].has(v) || map.box[box].has(v)) 
+                return false
+            else {
+                map.row[x].add(v)
+                map.col[y].add(v)
+                map.box[box].add(v)
+            }
+        }
+
+    return true
+}
+
 const solutions = {
-    'Stella Marie': { sm_1, sm_2 }
+    'Stella Marie': { sm_1, sm_2, sm_3 }
 }
 
 const tests = [
@@ -106,6 +140,10 @@ const tests = [
     },
     {
         ipt: [["8","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]],
+        res: false
+    },
+    {
+        ipt: [[".",".",".",".",".",".","5",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".",".","."],["9","3",".",".","2",".","4",".","."],[".",".","7",".",".",".","3",".","."],[".",".",".",".",".",".",".",".","."],[".",".",".","3","4",".",".",".","."],[".",".",".",".",".","3",".",".","."],[".",".",".",".",".","5","2",".","."]],
         res: false
     }
 ]
