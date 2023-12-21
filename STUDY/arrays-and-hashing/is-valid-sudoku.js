@@ -129,6 +129,33 @@ const sm_3 = board => {
     return true
 }
 
+const sm_4 = board => {
+    const map = new Map()
+    for (const i of board.keys())
+        for (const j of board.keys())
+            if (board[i][j] !== '.')
+                map.set([i, j], board[i][j])
+
+    const tab = { row: {}, col: {}, box: {} }
+
+    for (const [[x, y], v] of map.entries()) {
+        const b = Math.floor(y / 3) * 3 + Math.floor(x / 3)
+
+        if (!tab.row[x]) tab.row[x] = {}
+        if (!tab.col[y]) tab.col[y] = {}
+        if (!tab.box[b]) tab.box[b] = {}
+
+        if (tab.row[x][v] || tab.col[y][v] || tab.box[b][v])
+            return false
+        
+        tab.row[x][v] = 1
+        tab.col[y][v] = 1
+        tab.box[b][v] = 1
+    }
+
+    return true
+}
+
 const solutions = {
     'Stella Marie': { sm_1, sm_2, sm_3 }
 }
