@@ -112,3 +112,43 @@ const tests = [
 
 const cases = () => {}
 const rates = cases()
+
+const write = (title, sol, type) => {
+    let arr = [title, '']
+    for (const key in sol) {
+        const data = type ? tests.values() : rates.values()
+        const fn = sol[key]
+        for (const test of data) {
+            const start = performance.now()
+            const res = fn(test.ipt)
+            const end = performance.now() - start
+    
+            const testName = test.ipt.reduce((acc, v) => {
+                if (v !== ".")
+                    acc++
+                return acc
+            }, 0)
+            const result = type? 
+                res === test.res ? 'passed' : 'failed'
+                : res === test.res ? end : 'failed'
+            const line = `${key} on ${testName}: ${result}`
+            arr.push(line)
+        }
+        arr.push('')
+    }
+    return arr
+}
+
+const results = () => {
+    let lines = ['Is Valid Sudoku (arrays and hashing)', '']
+
+    lines = lines.concat(write('Stella Marie - Tests', solutions['Stella Marie'], true))
+    lines = lines.concat(write('Stella Marie - Rates of Growth', solutions['Stella Marie'], false))
+
+    const file = fs.createWriteStream('is-valid-sudoku.txt')
+    file.on('error', err => console.error(err))
+    lines.forEach(line => file.write(line + '\n'))
+    file.end()
+}
+
+results()
