@@ -247,9 +247,7 @@ const write = (title, sol, type) => {
                     acc++
                 return acc
             }, 0)
-            const result = type? 
-                res === test.res ? 'passed' : 'failed'
-                : res === test.res ? end : 'failed'
+            const result = res === test.res ? end : 'failed'
             const line = `${key} on ${testName}: ${result}`
             arr.push(line)
         }
@@ -262,7 +260,7 @@ const results = () => {
     let lines = ['Is Valid Sudoku (arrays and hashing)', '']
 
     lines = lines.concat(write('Stella Marie - Tests', solutions['Stella Marie'], true))
-    lines = lines.concat(write('Stella Marie - Rates of Growth', solutions['Stella Marie'], false))
+    // lines = lines.concat(write('Stella Marie - Rates of Growth', solutions['Stella Marie'], false))
 
     const file = fs.createWriteStream('is-valid-sudoku.txt')
     file.on('error', err => console.error(err))
