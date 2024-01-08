@@ -61,6 +61,9 @@ Additional sources:
 - contains duplicate
 - group anagrams
 - is anagram
+- is valid sudoku
+- longest consecutive
+- top k frequent elements
 - two sum
 
 **Backtracking**
@@ -103,14 +106,20 @@ Additional sources:
 - (none yet)
 
 **Two Pointers**
-- (none yet)
+- is palindrome
+- sorted two sum
 
 ## Schedule
 
 THU 2023.12.14      Arrays & Hashing 1-3 | CCI: Arrays and Strings
                     -- Move pr. 3 to SUN
 SUN 2023.12.17      pr. 4-6
+                    -- Move pr. 6 to MON
 MON 2023.12.18      pr. 7-8
+                    Move to 12.19
+                    top-k-frequent-elements: return for GeekForGeeks solutions (max heap)
+
+2 problems per day
 
 TUE 2023.12.19      Two Pointers 1-3
 THU 2023.12.21      pr. 4-5

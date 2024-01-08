@@ -14,6 +14,18 @@ const sm_1 = (numbers, target) => {
     }
 }
 
+const sm_2 = (numbers, target) => {
+    if (numbers.length === 2)
+        return [1, 2]
+    let i = 0, j = numbers.length - 1
+    while (i < j) {
+        if (numbers[j] - target > numbers[i]) j--
+        else if (target - numbers[i] > numbers[j]) i++
+        else
+            return [i + 1, j + 1]
+    }
+}
+
 const solutions = {
     'Stella Marie': { sm_1 }
 }
@@ -26,6 +38,18 @@ const tests = [
 ]
 
 const cases = () => {
+    const ipt = []
+    for (let i = 2; i < 7; ++i) {
+        const arr = new Array(10 ** i + 1)
+        let n = 10 ** i / 2
+        for (const i of arr.keys())
+            arr[i] = i - n
+        ipt.push({ 
+            ipt: { numbers: arr, target: 10 ** i }, 
+            res: [arr.length - 3, arr.length - 1] 
+        })
+    }
+    return ipt
 }
 const rates = cases()
 
